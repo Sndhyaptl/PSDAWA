@@ -1,0 +1,368 @@
+
+.about-page {
+  color: #1E293B;
+  overflow: hidden;
+}
+
+/* =========================
+   ABOUT HERO
+========================= */
+
+.about-hero {
+  position: relative;
+  min-height: 390px;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(
+      110deg,
+      rgba(15, 23, 42, 0.97),
+      rgba(30, 64, 175, 0.90)
+    ),
+    url("/images/home/hero.jpg") center/cover no-repeat;
+  color: #fff;
+}
+
+.about-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(15, 23, 42, .35),
+    transparent
+  );
+}
+
+.about-hero-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 65px;
+  padding-bottom: 65px;
+}
+
+.about-eyebrow,
+.section-kicker {
+  display: inline-block;
+  color: #D4A017;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.about-hero h1 {
+  max-width: 850px;
+  font-size: clamp(2rem, 5vw, 3.35rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+
+.about-hero-content > p {
+  max-width: 760px;
+  color: rgba(255,255,255,.88);
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+.about-breadcrumb {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+  font-size: .9rem;
+  color: #F4D77D;
+}
+
+.about-breadcrumb a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* =========================
+   COMMON SECTION
+========================= */
+
+.section-padding {
+  padding: 82px 0;
+}
+
+.about-section-title {
+  color: #1E3A8A;
+  font-size: clamp(1.8rem, 3vw, 2.45rem);
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.about-body-text {
+  color: #64748B;
+  font-size: 1rem;
+  line-height: 1.95;
+}
+
+/* =========================
+   ABOUT IMAGE
+========================= */
+
+.about-image-panel {
+  position: relative;
+  min-height: 420px;
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(30, 58, 138, 0.25),
+      rgba(37, 99, 235, 0.20)
+    ),
+    url("/images/association-about.jpg") center/cover no-repeat;
+  box-shadow: 0 15px 40px rgba(30, 58, 138, 0.18);
+}
+
+.about-intro-image {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+.about-image-panel span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 22px 15px;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: .82rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 42, 0.9),
+    transparent
+  );
+}
+
+/* =========================
+   PURPOSE
+========================= */
+
+.about-purpose {
+  background: #F1F5FB;
+}
+
+.purpose-card {
+  height: 100%;
+  padding: 38px;
+  background: #fff;
+  border-radius: 18px;
+  border-top: 4px solid #1D4ED8;
+  box-shadow: 0 10px 35px rgba(30, 58, 138, .07);
+}
+
+.purpose-card-gold {
+  border-top-color: #D4A017;
+}
+
+.purpose-icon {
+  width: 62px;
+  height: 62px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: #DBEAFE;
+  color: #1D4ED8;
+  margin-bottom: 22px;
+}
+
+.purpose-card-gold .purpose-icon {
+  background: #FBF4E4;
+  color: #B18321;
+}
+
+.purpose-card h3 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #1E3A8A;
+  margin-bottom: 14px;
+}
+
+.purpose-card p,
+.objective-card p,
+.value-card p {
+  color: #64748B;
+  line-height: 1.85;
+  margin-bottom: 0;
+}
+
+/* =========================
+   OBJECTIVES
+========================= */
+
+.about-heading {
+  max-width: 720px;
+  margin: 0 auto 30px;
+}
+
+.about-heading > p {
+  color: #64748B;
+  line-height: 1.8;
+}
+
+.objective-card {
+  height: 100%;
+  padding: 28px;
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.objective-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(30, 58, 138, .10);
+}
+
+.objective-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.objective-number {
+  color: #D4A017;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.objective-icon {
+  width: 55px;
+  height: 55px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  background: #DBEAFE;
+  color: #1D4ED8;
+}
+
+.objective-card h3 {
+  color: #1E3A8A;
+  font-size: 1.18rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+/* =========================
+   VALUES
+========================= */
+
+.about-values {
+  background: #F1F5FB;
+}
+
+.value-card {
+  height: 100%;
+  text-align: center;
+  padding: 28px 18px;
+  background: #fff;
+  border-radius: 16px;
+  color: #1D4ED8;
+}
+
+.value-card h3 {
+  margin: 18px 0 10px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #1E3A8A;
+}
+
+.value-card p {
+  font-size: .9rem;
+}
+
+/* =========================
+   ORGANIZATION STRUCTURE
+========================= */
+
+.structure-list {
+  max-width: 650px;
+  margin: 35px auto 20px;
+}
+
+.structure-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 28px;
+  background: #F1F5FB;
+  border: 1px solid #DBEAFE;
+  border-radius: 14px;
+  color: #1D4ED8;
+}
+
+.structure-state {
+  background: #1E3A8A;
+  color: #fff;
+}
+
+.structure-item h3 {
+  margin: 0 0 5px;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.structure-item p {
+  margin: 0;
+  font-size: .9rem;
+  opacity: .8;
+}
+
+.structure-connector {
+  height: 28px;
+  width: 2px;
+  background: #D4A017;
+  margin: 0 auto;
+}
+
+.structure-note {
+  max-width: 760px;
+  margin: 25px auto 0;
+  padding: 15px 18px;
+  background: #FFF8E8;
+  border-left: 4px solid #D4A017;
+  border-radius: 8px;
+  color: #74633E;
+  font-size: .9rem;
+  line-height: 1.8;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 767px) {
+  .about-hero {
+    min-height: 360px;
+  }
+
+  .section-padding {
+    padding: 58px 0;
+  }
+
+  .about-image-panel {
+    min-height: 300px;
+  }
+
+  .about-intro-image {
+    height: 300px;
+  }
+
+  .purpose-card {
+    padding: 28px;
+  }
+
+  .structure-item {
+    padding: 18px;
+  }
+}

@@ -1,0 +1,369 @@
+
+.state-committee-page {
+  color: #1E293B;
+  overflow: hidden;
+}
+
+.state-committee-hero {
+  padding: 85px 0 75px;
+  color: #fff;
+  background:
+    linear-gradient(
+      110deg,
+      rgba(15, 23, 42, 0.97),
+      rgba(30, 64, 175, 0.90)
+    ),
+    url("/images/home/hero.jpg") center/cover no-repeat;
+}
+
+.state-committee-eyebrow {
+  display: inline-block;
+  color: #F4D77D;
+  font-size: .8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
+
+.state-committee-hero h1 {
+  max-width: 850px;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+
+.state-committee-hero p {
+  max-width: 760px;
+  color: rgba(255, 255, 255, .88);
+  font-size: 1.05rem;
+  line-height: 1.9;
+}
+
+.state-committee-breadcrumb {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+  color: #F4D77D;
+  font-size: .9rem;
+}
+
+.state-committee-breadcrumb a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.state-committee-content {
+  padding: 75px 0;
+}
+
+.committee-intro-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.committee-intro-row > div:first-child {
+  max-width: 720px;
+}
+
+.committee-intro-row h2 {
+  color: #1E3A8A;
+  font-size: clamp(1.7rem, 3vw, 2.25rem);
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.committee-intro-row p {
+  color: #64748B;
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+
+.section-kicker {
+  display: inline-block;
+  color: #B18321;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  margin-bottom: 12px;
+}
+
+.committee-count-card {
+  min-width: 190px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px 22px;
+  border: 1px solid #DBEAFE;
+  border-radius: 14px;
+  background: #F1F5FB;
+}
+
+.committee-count-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: #DBEAFE;
+  color: #1D4ED8;
+}
+
+.committee-count-card strong {
+  display: block;
+  color: #1E3A8A;
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+.committee-count-card span {
+  color: #64748B;
+  font-size: .85rem;
+}
+
+.committee-filter-bar {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 32px;
+  padding: 18px;
+  background: #F1F5FB;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+}
+
+.committee-search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 0 14px;
+  background: #fff;
+  border: 1px solid #CBD5E1;
+  border-radius: 9px;
+  color: #64748B;
+}
+
+.committee-search input {
+  width: 100%;
+  min-width: 0;
+  height: 46px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #1E293B;
+}
+
+.committee-search input:focus {
+  outline: none;
+}
+
+.clear-search {
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #64748B;
+  cursor: pointer;
+}
+
+.committee-filter-bar select {
+  min-width: 205px;
+  height: 48px;
+  padding: 0 35px 0 14px;
+  border: 1px solid #CBD5E1;
+  border-radius: 9px;
+  background-color: #fff;
+  color: #1E293B;
+  outline-color: #1D4ED8;
+}
+
+.state-member-card {
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #E2E8F0;
+  border-radius: 17px;
+  box-shadow: 0 8px 25px rgba(30, 58, 138, .05);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.state-member-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 35px rgba(30, 58, 138, .11);
+}
+
+.state-member-photo {
+  height: 300px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #DBEAFE, #BFDBFE);
+  color: #1D4ED8;
+}
+
+.state-member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.state-member-info {
+  padding: 23px;
+}
+
+.state-member-designation {
+  display: inline-block;
+  padding: 6px 11px;
+  border-radius: 30px;
+  background: #DBEAFE;
+  color: #1E40AF;
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+.state-member-info h3 {
+  margin: 15px 0 10px;
+  color: #1E3A8A;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.state-member-detail {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #64748B;
+  font-size: .9rem;
+}
+
+.state-member-bio {
+  color: #64748B;
+  font-size: .9rem;
+  line-height: 1.8;
+}
+
+.state-member-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 16px;
+  padding-top: 15px;
+  border-top: 1px solid #E2E8F0;
+}
+
+.state-member-contact a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #1D4ED8;
+  font-size: .88rem;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.state-member-contact a:hover {
+  color: #1E3A8A;
+}
+
+.committee-empty-state {
+  padding: 65px 25px;
+  text-align: center;
+  background: #F8FAFC;
+  border: 1px dashed #CBD5E1;
+  border-radius: 18px;
+}
+
+.committee-empty-icon {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: #DBEAFE;
+  color: #1D4ED8;
+}
+
+.committee-empty-state h3 {
+  color: #1E3A8A;
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.committee-empty-state p {
+  max-width: 580px;
+  margin: 0 auto;
+  color: #64748B;
+  line-height: 1.8;
+}
+
+.committee-reset-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 8px;
+  background: #1D4ED8;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+
+.committee-reset-button:hover {
+  background: #1E3A8A;
+}
+
+.committee-info-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 30px;
+  padding: 17px 20px;
+  border-left: 4px solid #D4A017;
+  border-radius: 8px;
+  background: #FFF8E8;
+  color: #8A6B2C;
+}
+
+.committee-info-note svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.committee-info-note p {
+  margin: 0;
+  font-size: .9rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 767px) {
+  .state-committee-hero {
+    padding: 65px 0;
+  }
+
+  .state-committee-content {
+    padding: 55px 0;
+  }
+
+  .committee-intro-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .committee-count-card {
+    width: 100%;
+  }
+
+  .committee-filter-bar {
+    flex-direction: column;
+  }
+
+  .committee-filter-bar select {
+    width: 100%;
+  }
+}
+

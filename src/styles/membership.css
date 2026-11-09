@@ -1,0 +1,310 @@
+
+/* src/styles/membership.css */
+
+.membership-page {
+  min-height: 70vh;
+  padding-bottom: 70px;
+}
+
+.membership-banner {
+  padding: 75px 0;
+  color: #fff;
+  background: linear-gradient(110deg, #084b30, #176f49);
+}
+
+.membership-eyebrow {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #f5d77a;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.membership-banner h1 {
+  margin: 0 0 12px;
+  font-size: clamp(30px, 5vw, 44px);
+  font-weight: 800;
+}
+
+.membership-banner p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.membership-content {
+  padding-top: 55px;
+}
+
+.membership-form {
+  max-width: 950px;
+  margin: 30px auto 0;
+  padding: 30px;
+  background: #fff;
+  border: 1px solid #e2ebe4;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(15, 55, 35, 0.06);
+}
+
+.membership-notice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  padding: 13px 15px;
+  color: #795d16;
+  background: #fff8e6;
+  border: 1px solid #f2e2b4;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.membership-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 30px 0 20px;
+  padding-bottom: 12px;
+  color: #176c48;
+  border-bottom: 1px solid #e5ede7;
+}
+
+.membership-section-heading:first-of-type {
+  margin-top: 0;
+}
+
+.membership-section-heading h3 {
+  margin: 0;
+  color: #183e2c;
+  font-size: 19px;
+  font-weight: 750;
+}
+
+.membership-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.membership-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.membership-full {
+  grid-column: 1 / -1;
+}
+
+.membership-field label {
+  color: #354d3e;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.membership-field input,
+.membership-field select,
+.membership-field textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  color: #263b30;
+  background: #fff;
+  border: 1px solid #dce7df;
+  border-radius: 7px;
+  outline: none;
+  font: inherit;
+  font-size: 14px;
+}
+
+.membership-field textarea {
+  resize: vertical;
+}
+
+.membership-field input:focus,
+.membership-field select:focus,
+.membership-field textarea:focus {
+  border-color: #16734b;
+  box-shadow: 0 0 0 3px rgba(22, 115, 75, 0.1);
+}
+
+.membership-upload {
+  padding: 20px;
+  background: #f8fbf8;
+  border: 1px dashed #9ab9a3;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.membership-upload label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  color: #176c48;
+  cursor: pointer;
+}
+
+.membership-upload label strong {
+  font-size: 15px;
+}
+
+.membership-upload label span {
+  color: #728077;
+  font-size: 13px;
+}
+
+.membership-upload input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.membership-file-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  color: #176c48;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.membership-error,
+.membership-submit-error {
+  margin: 12px 0 0;
+  color: #b42318;
+  font-size: 13px;
+}
+
+.membership-declaration {
+  margin: 25px 0;
+  padding: 16px;
+  background: #f8fbf8;
+  border-radius: 8px;
+}
+
+.membership-declaration label {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  color: #43564a;
+  font-size: 14px;
+  line-height: 1.7;
+  cursor: pointer;
+}
+
+.membership-declaration input {
+  width: 17px;
+  height: 17px;
+  margin-top: 3px;
+  accent-color: #176c48;
+}
+
+.membership-submit {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 47px;
+  padding: 11px 25px;
+  color: #fff;
+  background: #176c48;
+  border: 0;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.membership-submit:hover {
+  background: #0d5034;
+}
+
+.membership-privacy-note {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 17px 0 0;
+  color: #77847c;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.membership-success {
+  max-width: 650px;
+  margin: 65px auto;
+  padding: 45px 25px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #e2ebe4;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(15, 55, 35, 0.06);
+}
+
+.membership-success > svg {
+  color: #198754;
+}
+
+.membership-success h2 {
+  margin: 20px 0 10px;
+  color: #183e2c;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.membership-success p {
+  margin: 0 auto 24px;
+  color: #68766e;
+  line-height: 1.8;
+}
+
+@media (max-width: 767px) {
+  .membership-banner {
+    padding: 55px 0;
+  }
+
+  .membership-content {
+    padding-top: 38px;
+  }
+
+  .membership-form {
+    padding: 20px 15px;
+  }
+
+  .membership-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .membership-full {
+    grid-column: auto;
+  }
+
+  .membership-section-heading h3 {
+    font-size: 17px;
+  }
+
+  .membership-submit {
+    width: 100%;
+  }
+
+  .membership-success {
+    margin: 35px auto;
+    padding: 35px 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .membership-submit {
+    transition: none;
+  }
+}

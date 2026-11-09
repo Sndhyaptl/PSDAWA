@@ -1,0 +1,434 @@
+
+/* src/styles/digital-id-card.css */
+
+.digital-id-page {
+  min-height: 70vh;
+  padding-bottom: 70px;
+}
+
+.digital-id-banner {
+  padding: 70px 0;
+  color: #fff;
+  background: linear-gradient(110deg, #084b30, #176f49);
+}
+
+.digital-id-eyebrow {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #f5d77a;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.digital-id-banner h1 {
+  margin: 0 0 12px;
+  font-size: clamp(30px, 5vw, 44px);
+  font-weight: 800;
+}
+
+.digital-id-banner p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.8;
+}
+
+.digital-id-content {
+  padding-top: 50px;
+}
+
+.digital-id-demo-warning {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 25px 0;
+  padding: 14px 16px;
+  color: #795d16;
+  background: #fff8e6;
+  border: 1px solid #f2e2b4;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.digital-id-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 30px;
+}
+
+.digital-id-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding: 25px;
+  background: #fff;
+  border: 1px solid #e2ebe4;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(15, 55, 35, 0.05);
+}
+
+.digital-id-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.digital-id-field label {
+  color: #354d3e;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.digital-id-field input,
+.digital-id-field select {
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 11px;
+  color: #263b30;
+  background: #fff;
+  border: 1px solid #dce7df;
+  border-radius: 7px;
+  outline: none;
+  font: inherit;
+  font-size: 13px;
+}
+
+.digital-id-field input:focus,
+.digital-id-field select:focus {
+  border-color: #176c48;
+  box-shadow: 0 0 0 3px rgba(22, 115, 75, 0.1);
+}
+
+.digital-id-error {
+  color: #b42318;
+  font-size: 12px;
+}
+
+.digital-id-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  grid-column: 1 / -1;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.digital-id-primary,
+.digital-id-secondary,
+.digital-id-print {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-height: 43px;
+  padding: 10px 15px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.digital-id-primary,
+.digital-id-print {
+  color: #fff;
+  background: #176c48;
+  border: 1px solid #176c48;
+}
+
+.digital-id-primary:hover,
+.digital-id-print:hover {
+  background: #0d5034;
+}
+
+.digital-id-secondary {
+  color: #176c48;
+  background: #fff;
+  border: 1px solid #cdded1;
+}
+
+.digital-id-secondary:hover {
+  background: #f0f7f2;
+}
+
+.digital-id-preview-area {
+  min-width: 0;
+  padding: 25px;
+  background: #f5f8f5;
+  border: 1px solid #e2ebe4;
+  border-radius: 12px;
+}
+
+.digital-id-preview-area > h3 {
+  margin: 0 0 22px;
+  color: #183e2c;
+  font-size: 19px;
+  font-weight: 750;
+}
+
+.digital-id-placeholder {
+  display: flex;
+  min-height: 300px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 25px;
+  color: #8b9b90;
+  text-align: center;
+}
+
+.digital-id-placeholder p {
+  max-width: 280px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ID card preview */
+
+.membership-id-card {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  overflow: hidden;
+  color: #183e2c;
+  background: #fff;
+  border: 1px solid #d5e3d8;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(15, 55, 35, 0.12);
+}
+
+.id-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 17px;
+  color: #fff;
+  background: linear-gradient(110deg, #084b30, #176f49);
+}
+
+.id-card-logo {
+  display: flex;
+  flex: 0 0 46px;
+  justify-content: center;
+  align-items: center;
+  width: 46px;
+  height: 46px;
+  color: #176c48;
+  background: #f5d77a;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.id-card-heading {
+  min-width: 0;
+}
+
+.id-card-heading h4 {
+  margin: 0 0 5px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.id-card-heading span {
+  color: #f5d77a;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.id-card-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px 16px 12px;
+}
+
+.id-card-photo {
+  display: flex;
+  flex: 0 0 92px;
+  justify-content: center;
+  align-items: center;
+  width: 92px;
+  height: 112px;
+  overflow: hidden;
+  color: #176c48;
+  background: #edf4ee;
+  border: 1px solid #d7e5da;
+  border-radius: 6px;
+}
+
+.id-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.id-card-details {
+  display: grid;
+  flex: 1;
+  gap: 7px;
+  min-width: 0;
+}
+
+.id-card-member-name {
+  margin-bottom: 3px;
+  color: #0b5536;
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+
+.id-card-details > div {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 5px;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.id-card-details > div span {
+  color: #728077;
+}
+
+.id-card-details > div b {
+  color: #263b30;
+  overflow-wrap: anywhere;
+}
+
+.id-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  min-height: 75px;
+  padding: 10px 16px;
+  background: #f1f7f2;
+  border-top: 1px solid #e0ebe2;
+}
+
+.id-card-contact {
+  color: #42604c;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.id-card-qr {
+  display: flex;
+  padding: 5px;
+  background: #fff;
+  border: 1px solid #dce7df;
+  border-radius: 4px;
+}
+
+.id-card-demo-label {
+  padding: 7px;
+  color: #a34b16;
+  background: #fff1df;
+  text-align: center;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+}
+
+.digital-id-print {
+  width: 100%;
+  max-width: 430px;
+  margin: 20px auto 0;
+}
+
+@media (max-width: 991px) {
+  .digital-id-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .digital-id-preview-area {
+    width: 100%;
+  }
+}
+
+@media (max-width: 575px) {
+  .digital-id-banner {
+    padding: 50px 0;
+  }
+
+  .digital-id-content {
+    padding-top: 35px;
+  }
+
+  .digital-id-form,
+  .digital-id-preview-area {
+    padding: 17px;
+  }
+
+  .digital-id-form {
+    grid-template-columns: 1fr;
+  }
+
+  .digital-id-form-actions {
+    flex-direction: column;
+  }
+
+  .digital-id-primary,
+  .digital-id-secondary {
+    width: 100%;
+  }
+
+  .id-card-body {
+    gap: 10px;
+    padding: 15px 10px 10px;
+  }
+
+  .id-card-photo {
+    flex-basis: 76px;
+    width: 76px;
+    height: 100px;
+  }
+
+  .id-card-details > div {
+    grid-template-columns: 75px minmax(0, 1fr);
+    font-size: 9px;
+  }
+
+  .id-card-header {
+    padding: 13px 10px;
+  }
+
+  .id-card-heading h4 {
+    font-size: 10px;
+  }
+}
+
+/* Print only the ID card */
+
+@media print {
+  @page {
+    size: auto;
+    margin: 12mm;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .membership-id-card,
+  .membership-id-card * {
+    visibility: visible !important;
+  }
+
+  .membership-id-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90mm;
+    max-width: 90mm;
+    box-shadow: none;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
