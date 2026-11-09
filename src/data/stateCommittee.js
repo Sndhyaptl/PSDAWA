@@ -152,6 +152,20 @@ const stateCommitteeMembers = [
     bioHi: "",
     bioEn: "",
     isActive: true
+  },
+  {
+    id: 12,
+    nameHi: "आदर्श सिंह",
+    nameEn: "Aadarsh Singh",
+    designationHi: "प्रदेश संरक्षक प्रतिनिधि",
+    designationEn: "State Guardian Representative",
+    districtHi: "सीतापुर",
+    districtEn: "Sitapur",
+    phone: "7318346574",
+    photo: "/images/members/aadarshsingh.jpeg",
+    bioHi: "",
+    bioEn: "",
+    isActive: true
   }
 ];
 
