@@ -106,7 +106,7 @@ const stateCommitteeMembers = [
     districtHi: "सीतापुर",
     districtEn: "Sitapur",
     phone: "7054929111",
-    photo: "/images/members/ravipatel.jpg",
+    photo: "/images/members/ravipatel.jpeg",
     bioHi: "",
     bioEn: "",
     isActive: true

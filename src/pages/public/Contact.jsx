@@ -14,6 +14,7 @@ import {
 
 import { useLanguage } from "../../hooks/useLanguage";
 import contactInfo from "../../data/contactInfo";
+import { saveContactMessage } from "../../utils/contactStorage";
 
 import "../../styles/contact.css";
 
@@ -167,17 +168,34 @@ const Contact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (event) => {
+
+const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
-    // Demo only:
-    // Connect this form to the backend API in a future phase.
-    setSubmitted(true);
-  };
+    try {
+        await saveContactMessage({
+            name: form.name.trim(),
+            mobile: form.mobile.trim(),
+            email: form.email.trim(),
+            subject: form.subject,
+            message: form.message.trim(),
+            consent: form.consent
+        });
+
+        setSubmitted(true);
+    } catch (error) {
+        if (error.name === "AbortError") {
+            return;
+        }
+
+        console.error("Contact message save failed:", error);
+
+        alert(error.message || "Unable to save your message.");
+    }
+};
+
 
   const resetForm = () => {
     setForm(initialForm);

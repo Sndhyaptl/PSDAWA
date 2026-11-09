@@ -66,13 +66,13 @@ function Navbar() {
                     <div className="navbar-actions">
                         <LanguageSwitcher />
 
-                        <NavLink
+                        {/* <NavLink
                             to="/membership"
                             onClick={closeMenu}
                             className="btn btn-gold join-button"
                         >
                             {t("joinUs")}
-                        </NavLink>
+                        </NavLink> */}
                     </div>
                 </div>
             </div>

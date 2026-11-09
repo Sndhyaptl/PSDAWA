@@ -1,15 +1,43 @@
 
-/* src/styles/gallery.css */
+/* =========================================
+   GALLERY PAGE - BLUE THEME
+   File: src/styles/gallery.css
+========================================= */
 
 .gallery-page {
   min-height: 70vh;
   padding-bottom: 70px;
+  color: #1e293b;
 }
 
+/* Gallery Banner */
+
 .gallery-banner {
+  position: relative;
   padding: 75px 0;
   color: #fff;
-  background: linear-gradient(110deg, #0F172A, #1E40AF);
+  background: linear-gradient(
+    110deg,
+    #0f172a 0%,
+    #1e3a8a 55%,
+    #2563eb 100%
+  );
+  overflow: hidden;
+}
+
+.gallery-banner::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  right: 5%;
+  top: -150px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 35px rgba(255, 255, 255, 0.035),
+    0 0 0 70px rgba(255, 255, 255, 0.025);
+  pointer-events: none;
 }
 
 .gallery-eyebrow {
@@ -19,10 +47,12 @@
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
 
 .gallery-banner h1 {
   margin: 0 0 12px;
+  color: #fff;
   font-size: clamp(30px, 5vw, 44px);
   font-weight: 800;
 }
@@ -35,9 +65,13 @@
   line-height: 1.8;
 }
 
+/* Gallery Content */
+
 .gallery-content {
   padding-top: 55px;
 }
+
+/* Gallery Filters */
 
 .gallery-filters {
   display: flex;
@@ -49,9 +83,9 @@
 
 .gallery-filter {
   padding: 9px 18px;
-  color: #176c48;
+  color: #1d4ed8;
   background: #fff;
-  border: 1px solid #dce7df;
+  border: 1px solid #dbeafe;
   border-radius: 30px;
   font-size: 13px;
   font-weight: 650;
@@ -62,16 +96,21 @@
 .gallery-filter:hover,
 .gallery-filter.active {
   color: #fff;
-  background: #176c48;
-  border-color: #176c48;
+  background: #2563eb;
+  border-color: #2563eb;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
+
+/* Gallery Count */
 
 .gallery-count {
   margin-bottom: 18px;
-  color: #77847c;
+  color: #64748b;
   font-size: 13px;
   text-align: right;
 }
+
+/* Gallery Grid */
 
 .gallery-grid {
   display: grid;
@@ -79,29 +118,31 @@
   gap: 22px;
 }
 
+/* Gallery Card */
+
 .gallery-card {
   min-width: 0;
   padding: 0;
   overflow: hidden;
   text-align: left;
   background: #fff;
-  border: 1px solid #e2ebe4;
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
-  box-shadow: 0 5px 18px rgba(15, 55, 35, 0.05);
+  box-shadow: 0 5px 18px rgba(15, 23, 42, 0.05);
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .gallery-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(15, 55, 35, 0.1);
+  box-shadow: 0 10px 25px rgba(30, 64, 175, 0.13);
 }
 
 .gallery-card-image {
   position: relative;
   height: 250px;
   overflow: hidden;
-  background: #edf4ee;
+  background: #eff6ff;
 }
 
 .gallery-card-image img {
@@ -115,6 +156,8 @@
   transform: scale(1.05);
 }
 
+/* Image Overlay */
+
 .gallery-card-overlay {
   position: absolute;
   inset: 0;
@@ -122,7 +165,7 @@
   justify-content: center;
   align-items: center;
   color: #fff;
-  background: rgba(8, 75, 48, 0.42);
+  background: rgba(30, 64, 175, 0.48);
   opacity: 0;
   transition: opacity 0.2s ease;
 }
@@ -132,6 +175,8 @@
   opacity: 1;
 }
 
+/* Gallery Information */
+
 .gallery-card-info {
   padding: 17px;
 }
@@ -140,8 +185,9 @@
   display: inline-block;
   margin-bottom: 9px;
   padding: 5px 10px;
-  color: #176c48;
-  background: #eaf5ee;
+  color: #1d4ed8;
+  background: #eff6ff;
+  border: 1px solid #dbeafe;
   border-radius: 20px;
   font-size: 11px;
   font-weight: 700;
@@ -149,7 +195,7 @@
 
 .gallery-card-info h3 {
   margin: 0 0 10px;
-  color: #183e2c;
+  color: #1e3a8a;
   font-size: 17px;
   font-weight: 750;
   line-height: 1.5;
@@ -159,16 +205,21 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #77847c;
+  color: #64748b;
   font-size: 12px;
 }
 
+/* Empty Gallery */
+
 .gallery-empty {
   padding: 35px 0;
+  color: #64748b;
   text-align: center;
 }
 
-/* Lightbox */
+/* =========================================
+   LIGHTBOX
+========================================= */
 
 .gallery-lightbox {
   position: fixed;
@@ -178,7 +229,7 @@
   justify-content: center;
   align-items: center;
   padding: 55px 65px;
-  background: rgba(0, 0, 0, 0.92);
+  background: rgba(15, 23, 42, 0.96);
 }
 
 .gallery-lightbox-content {
@@ -195,6 +246,7 @@
   max-height: 65vh;
   margin: 0 auto;
   object-fit: contain;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 6px;
 }
 
@@ -205,6 +257,7 @@
 
 .gallery-lightbox-caption h3 {
   margin: 0 0 8px;
+  color: #fff;
   font-size: 19px;
   font-weight: 750;
 }
@@ -230,6 +283,8 @@
   color: #f5d77a;
 }
 
+/* Lightbox Controls */
+
 .gallery-lightbox-close,
 .gallery-lightbox-prev,
 .gallery-lightbox-next {
@@ -244,13 +299,15 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .gallery-lightbox-close:hover,
 .gallery-lightbox-prev:hover,
 .gallery-lightbox-next:hover {
-  color: #183e2c;
+  color: #1e3a8a;
   background: #f5d77a;
+  border-color: #f5d77a;
 }
 
 .gallery-lightbox-close {
@@ -269,6 +326,10 @@
   right: 18px;
   transform: translateY(-50%);
 }
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
 
 @media (max-width: 991px) {
   .gallery-grid {
@@ -309,13 +370,36 @@
   .gallery-lightbox-next {
     right: 5px;
   }
+
+  .gallery-lightbox-close {
+    top: 12px;
+    right: 12px;
+  }
 }
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+.gallery-filter:focus-visible,
+.gallery-card:focus-visible,
+.gallery-lightbox-close:focus-visible,
+.gallery-lightbox-prev:focus-visible,
+.gallery-lightbox-next:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 3px;
+}
+
+/* Reduced Motion */
 
 @media (prefers-reduced-motion: reduce) {
   .gallery-card,
   .gallery-card-image img,
   .gallery-filter,
-  .gallery-card-overlay {
+  .gallery-card-overlay,
+  .gallery-lightbox-close,
+  .gallery-lightbox-prev,
+  .gallery-lightbox-next {
     transition: none;
   }
 

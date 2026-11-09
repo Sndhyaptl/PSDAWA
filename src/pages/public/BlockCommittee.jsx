@@ -54,9 +54,6 @@ function BlockCommittee() {
       : "No district found.",
     backDistricts: isHindi ? "जिले बदलें" : "Change District",
     backBlocks: isHindi ? "ब्लॉक सूची पर वापस जाएं" : "Back to Block List",
-    note: isHindi
-      ? "केवल सत्यापित एवं अधिकृत समिति सदस्यों का विवरण प्रकाशित किया जाएगा।"
-      : "Only verified and authorized committee member details should be published.",
   };
 
   const activeMembers = useMemo(
@@ -401,6 +398,10 @@ function BlockCommittee() {
                     const designation = isHindi
                       ? member.designationHi
                       : member.designationEn;
+                      
+                    const gram = isHindi
+                      ? member.gramHi
+                      : member.gramEn;
                     const bio = isHindi ? member.bioHi : member.bioEn;
 
                     return (
@@ -419,7 +420,7 @@ function BlockCommittee() {
                               {designation}
                             </span>
                             <h3>{name}</h3>
-
+                            <p>{gram}</p>
                             {bio && <p>{bio}</p>}
 
                             {(member.phone || member.email) && (
@@ -454,10 +455,6 @@ function BlockCommittee() {
             </>
           )}
 
-          <div className="block-disclaimer">
-            <Users size={20} />
-            <p>{t.note}</p>
-          </div>
         </div>
       </section>
     </main>

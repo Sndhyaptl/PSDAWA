@@ -20,6 +20,8 @@ import Gallery from "./pages/public/Gallery";
 import Contact from "./pages/public/Contact";
 import Dashboard from "./pages/admin/Dashboard";
 import Members from "./pages/admin/Members";
+import HelpDeskc from "./components/HelpDesk";
+import HelpDeskPage from "./pages/public/HelpDesk";
 
 
 
@@ -99,6 +101,7 @@ function AdminDashboardPlaceholder() {
 function AppRoutes() {
 
     return (
+         <>
         <Routes>
 
             {/* PUBLIC WEBSITE */}
@@ -115,6 +118,7 @@ function AppRoutes() {
                 <Route path="/id-card" element={<DigitalIdCard />} />
                 <Route path="/gallery" element={<Gallery />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/help-desk" element={<HelpDeskPage />} />
 
             </Route>
 
@@ -189,6 +193,8 @@ function AppRoutes() {
             />
 
         </Routes>
+        <HelpDeskc />
+         </>
     );
 }
 

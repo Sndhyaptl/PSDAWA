@@ -207,6 +207,11 @@ export default function Gallery() {
                       : image.titleEn}
                   </h3>
 
+                  <lable>
+                    {isHindi
+                      ? image.descriptionHi
+                      : image.descriptionEn}
+                  </lable>
                   <span className="gallery-card-date">
                     <CalendarDays size={14} />
                     {formatDate(image.date, language)}
