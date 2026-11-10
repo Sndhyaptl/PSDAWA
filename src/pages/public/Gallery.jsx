@@ -1,5 +1,6 @@
 
 import { useEffect, useMemo, useState } from "react";
+
 import {
   Image as ImageIcon,
   X,
@@ -15,6 +16,10 @@ import EmptyState from "../../components/EmptyState";
 import galleryImages from "../../data/gallery";
 import "../../styles/gallery.css";
 
+// --------------------------------------------------
+// GALLERY CATEGORIES
+// --------------------------------------------------
+
 const categories = [
   { value: "all", hi: "सभी तस्वीरें", en: "All Photos" },
   { value: "meeting", hi: "बैठक", en: "Meetings" },
@@ -22,6 +27,10 @@ const categories = [
   { value: "activity", hi: "गतिविधियां", en: "Activities" },
   { value: "other", hi: "अन्य", en: "Other" }
 ];
+
+// --------------------------------------------------
+// FORMAT DATE
+// --------------------------------------------------
 
 function formatDate(date, language) {
   if (!date) return "";
@@ -36,55 +45,168 @@ function formatDate(date, language) {
   ).format(new Date(`${date}T00:00:00`));
 }
 
+// --------------------------------------------------
+// GET ALBUM IMAGES
+// Supports old image and new images array
+// --------------------------------------------------
+
+function getGalleryItemImages(item) {
+  if (Array.isArray(item?.images) && item.images.length > 0) {
+    return item.images;
+  }
+
+  return item?.image ? [item.image] : [];
+}
+
+// --------------------------------------------------
+// GALLERY COMPONENT
+// --------------------------------------------------
+
 export default function Gallery() {
   const { language } = useLanguage();
   const isHindi = language === "hi";
 
   const [activeCategory, setActiveCategory] = useState("all");
+
+  // Full-screen album
   const [selectedImage, setSelectedImage] = useState(null);
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+
+  // Main grid carousel
+  const [gridPhotoIndexes, setGridPhotoIndexes] = useState({});
+
+  // --------------------------------------------------
+  // FILTER GALLERY
+  // --------------------------------------------------
 
   const images = useMemo(() => {
     return galleryImages
-      .filter((image) => image.isActive !== false)
-      .filter((image) => {
+      .filter((item) => item.isActive !== false)
+      .filter((item) => {
         return (
           activeCategory === "all" ||
-          image.category === activeCategory
+          item.category === activeCategory
         );
       })
       .sort((a, b) => new Date(b.date) - new Date(a.date));
   }, [activeCategory]);
 
-  const selectedIndex = images.findIndex(
-    (image) => image.id === selectedImage?.id
-  );
+  // --------------------------------------------------
+  // SELECTED ALBUM PHOTOS
+  // --------------------------------------------------
 
-  const closeLightbox = () => setSelectedImage(null);
+  const selectedPhotos = useMemo(() => {
+    return selectedImage
+      ? getGalleryItemImages(selectedImage)
+      : [];
+  }, [selectedImage]);
+
+  const currentPhoto = selectedPhotos[currentPhotoIndex];
+
+  // --------------------------------------------------
+  // CLOSE LIGHTBOX
+  // --------------------------------------------------
+
+  const closeLightbox = () => {
+    setSelectedImage(null);
+    setCurrentPhotoIndex(0);
+  };
+
+  // --------------------------------------------------
+  // OPEN LIGHTBOX
+  // Opens from the currently visible grid image
+  // --------------------------------------------------
+
+  const openLightbox = (item, photoIndex = 0) => {
+    const photos = getGalleryItemImages(item);
+
+    if (!photos.length) return;
+
+    setCurrentPhotoIndex(
+      Math.min(photoIndex, photos.length - 1)
+    );
+
+    setSelectedImage(item);
+  };
+
+  // --------------------------------------------------
+  // PREVIOUS PHOTO
+  // --------------------------------------------------
 
   const showPrevious = () => {
-    if (!images.length) return;
+    if (selectedPhotos.length <= 1) return;
 
-    const previousIndex =
-      (selectedIndex - 1 + images.length) % images.length;
-
-    setSelectedImage(images[previousIndex]);
+    setCurrentPhotoIndex((current) =>
+      (current - 1 + selectedPhotos.length) %
+      selectedPhotos.length
+    );
   };
+
+  // --------------------------------------------------
+  // NEXT PHOTO
+  // --------------------------------------------------
 
   const showNext = () => {
+    if (selectedPhotos.length <= 1) return;
+
+    setCurrentPhotoIndex((current) =>
+      (current + 1) % selectedPhotos.length
+    );
+  };
+
+  // --------------------------------------------------
+  // MAIN GRID AUTO SLIDESHOW
+  // Each album slides independently every 2 seconds
+  // --------------------------------------------------
+
+  useEffect(() => {
     if (!images.length) return;
 
-    const nextIndex = (selectedIndex + 1) % images.length;
+    const interval = setInterval(() => {
+      setGridPhotoIndexes((previous) => {
+        const updated = { ...previous };
 
-    setSelectedImage(images[nextIndex]);
-  };
+        images.forEach((item) => {
+          const photos = getGalleryItemImages(item);
+
+          if (photos.length > 1) {
+            const currentIndex = previous[item.id] ?? 0;
+
+            updated[item.id] =
+              (currentIndex + 1) % photos.length;
+          }
+        });
+
+        return updated;
+      });
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [images]);
+
+ 
+  // --------------------------------------------------
+  // KEYBOARD CONTROLS
+  // Escape = Close
+  // Left Arrow = Previous
+  // Right Arrow = Next
+  // --------------------------------------------------
 
   useEffect(() => {
     if (!selectedImage) return;
 
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") closeLightbox();
-      if (event.key === "ArrowLeft") showPrevious();
-      if (event.key === "ArrowRight") showNext();
+      if (event.key === "Escape") {
+        closeLightbox();
+      }
+
+      if (event.key === "ArrowLeft") {
+        showPrevious();
+      }
+
+      if (event.key === "ArrowRight") {
+        showNext();
+      }
     };
 
     document.addEventListener("keydown", handleKeyDown);
@@ -92,25 +214,34 @@ export default function Gallery() {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [selectedImage, selectedIndex, images]);
+  }, [selectedImage, selectedPhotos.length]);
+
+  // --------------------------------------------------
+  // CATEGORY LABEL
+  // --------------------------------------------------
 
   const categoryLabel = (value) => {
     const category = categories.find(
       (item) => item.value === value
     );
 
-    return category
-      ? isHindi
-        ? category.hi
-        : category.en
-      : value;
+    if (!category) return value;
+
+    return isHindi ? category.hi : category.en;
   };
+
+  // --------------------------------------------------
+  // JSX
+  // --------------------------------------------------
 
   return (
     <div className="gallery-page">
-      {/* Banner */}
+
+      {/* HERO BANNER */}
+
       <section className="gallery-banner">
         <div className="container">
+
           <span className="gallery-eyebrow">
             {isHindi ? "हमारी गतिविधियां" : "OUR ACTIVITIES"}
           </span>
@@ -124,11 +255,14 @@ export default function Gallery() {
               ? "संगठन की बैठकों, कार्यक्रमों और गतिविधियों की तस्वीरें देखें।"
               : "Explore photographs from association meetings, events and activities."}
           </p>
+
         </div>
       </section>
 
-      {/* Gallery content */}
+      {/* GALLERY CONTENT */}
+
       <section className="container gallery-content">
+
         <SectionTitle
           title={isHindi ? "हमारी तस्वीरें" : "Our Photos"}
           subtitle={
@@ -138,8 +272,10 @@ export default function Gallery() {
           }
         />
 
-        {/* Category filters */}
+        {/* CATEGORY FILTERS */}
+
         <div className="gallery-filters">
+
           {categories.map((category) => (
             <button
               key={category.value}
@@ -151,77 +287,138 @@ export default function Gallery() {
               }
               onClick={() => {
                 setActiveCategory(category.value);
-                setSelectedImage(null);
+                closeLightbox();
               }}
             >
               {isHindi ? category.hi : category.en}
             </button>
           ))}
+
         </div>
+
+        {/* ALBUM COUNT */}
 
         <div className="gallery-count">
           {isHindi
-            ? `कुल ${images.length} तस्वीरें`
-            : `${images.length} photos`}
+            ? `कुल ${images.length} एल्बम`
+            : `${images.length} albums`}
         </div>
 
-        {/* Image grid */}
+        {/* MAIN GALLERY GRID */}
+
         {images.length > 0 ? (
+
           <div className="gallery-grid">
-            {images.map((image) => (
-              <button
-                key={image.id}
-                type="button"
-                className="gallery-card"
-                onClick={() => setSelectedImage(image)}
-                aria-label={
-                  isHindi
-                    ? image.titleHi
-                    : image.titleEn
-                }
-              >
-                <div className="gallery-card-image">
-                  <img
-                    src={image.image}
-                    alt={
-                      isHindi
-                        ? image.titleHi
-                        : image.titleEn
-                    }
-                    loading="lazy"
-                  />
 
-                  <div className="gallery-card-overlay">
-                    <ImageIcon size={27} />
+            {images.map((item) => {
+              const itemPhotos = getGalleryItemImages(item);
+
+              const currentGridIndex =
+                (gridPhotoIndexes[item.id] ?? 0) %
+                Math.max(itemPhotos.length, 1);
+
+              const coverImage = itemPhotos[currentGridIndex];
+
+              return (
+
+                <button
+                  key={item.id}
+                  type="button"
+                  className="gallery-card"
+                  onClick={() =>
+                    openLightbox(item, currentGridIndex)
+                  }
+                  aria-label={
+                    isHindi ? item.titleHi : item.titleEn
+                  }
+                >
+
+                  {/* CARD IMAGE */}
+
+                  <div className="gallery-card-image">
+
+                    {coverImage && (
+                      <img
+                        key={coverImage}
+                        src={coverImage}
+                        alt={
+                          isHindi
+                            ? item.titleHi
+                            : item.titleEn
+                        }
+                        loading="lazy"
+                        className="gallery-grid-slide"
+                      />
+                    )}
+
+                    {/* OVERLAY */}
+
+                    <div className="gallery-card-overlay">
+
+                      <ImageIcon size={27} />
+
+                      <span>
+                        {isHindi
+                          ? "तस्वीरें देखें"
+                          : "View Photos"}
+                      </span>
+
+                    </div>
+
+                    {/* IMAGE COUNT */}
+
+                    <span className="gallery-image-count">
+                      <ImageIcon size={14} />
+                      {itemPhotos.length}
+                    </span>
+
+                    {/* SLIDE COUNTER */}
+
+                    {itemPhotos.length > 1 && (
+                      <span className="gallery-grid-counter">
+                        {currentGridIndex + 1} / {itemPhotos.length}
+                      </span>
+                    )}
+
                   </div>
-                </div>
 
-                <div className="gallery-card-info">
-                  <span className="gallery-card-category">
-                    {categoryLabel(image.category)}
-                  </span>
+                  {/* CARD DETAILS */}
 
-                  <h3>
-                    {isHindi
-                      ? image.titleHi
-                      : image.titleEn}
-                  </h3>
+                  <div className="gallery-card-info">
 
-                  <lable>
-                    {isHindi
-                      ? image.descriptionHi
-                      : image.descriptionEn}
-                  </lable>
-                  <span className="gallery-card-date">
-                    <CalendarDays size={14} />
-                    {formatDate(image.date, language)}
-                  </span>
-                </div>
-              </button>
-            ))}
+                    <span className="gallery-card-category">
+                      {categoryLabel(item.category)}
+                    </span>
+
+                    <h3>
+                      {isHindi
+                        ? item.titleHi
+                        : item.titleEn}
+                    </h3>
+
+                    <p>
+                      {isHindi
+                        ? item.descriptionHi
+                        : item.descriptionEn}
+                    </p>
+
+                    <span className="gallery-card-date">
+                      <CalendarDays size={14} />
+                      {formatDate(item.date, language)}
+                    </span>
+
+                  </div>
+
+                </button>
+              );
+            })}
+
           </div>
+
         ) : (
+
           <div className="gallery-empty">
+
             <EmptyState
               title={
                 isHindi
@@ -234,23 +431,33 @@ export default function Gallery() {
                   : "Verified association photographs will be published here when available."
               }
             />
+
           </div>
+
         )}
+
       </section>
 
-      {/* Lightbox */}
-      {selectedImage && (
+      {/* FULL-SCREEN SLIDESHOW */}
+
+      {selectedImage && currentPhoto && (
+
         <div
           className="gallery-lightbox"
           role="dialog"
           aria-modal="true"
-          aria-label={isHindi ? "फोटो प्रीव्यू" : "Photo preview"}
+          aria-label={
+            isHindi ? "फोटो प्रीव्यू" : "Photo preview"
+          }
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) {
               closeLightbox();
             }
           }}
         >
+
+          {/* CLOSE BUTTON */}
+
           <button
             type="button"
             className="gallery-lightbox-close"
@@ -260,28 +467,45 @@ export default function Gallery() {
             <X size={25} />
           </button>
 
-          {images.length > 1 && (
+          {/* PREVIOUS BUTTON */}
+
+          {selectedPhotos.length > 1 && (
+
             <button
               type="button"
               className="gallery-lightbox-prev"
               onClick={showPrevious}
-              aria-label="Previous image"
+              aria-label={
+                isHindi ? "पिछली तस्वीर" : "Previous photo"
+              }
             >
               <ChevronLeft size={30} />
             </button>
+
           )}
 
           <div className="gallery-lightbox-content">
-            <img
-              src={selectedImage.image}
-              alt={
-                isHindi
-                  ? selectedImage.titleHi
-                  : selectedImage.titleEn
-              }
-            />
+
+            {/* CURRENT IMAGE */}
+
+            <div className="gallery-lightbox-image">
+
+              <img
+                key={currentPhoto}
+                src={currentPhoto}
+                alt={
+                  isHindi
+                    ? selectedImage.titleHi
+                    : selectedImage.titleEn
+                }
+              />
+
+            </div>
+
+            {/* IMAGE CAPTION */}
 
             <div className="gallery-lightbox-caption">
+
               <h3>
                 {isHindi
                   ? selectedImage.titleHi
@@ -299,24 +523,63 @@ export default function Gallery() {
                 {formatDate(selectedImage.date, language)}
               </span>
 
+              {/* IMAGE COUNTER */}
+
               <small>
-                {selectedIndex + 1} / {images.length}
+                {currentPhotoIndex + 1} / {selectedPhotos.length}
               </small>
+
             </div>
+
+            {/* SLIDE DOTS */}
+
+            {selectedPhotos.length > 1 && (
+
+              <div className="gallery-slide-dots">
+
+                {selectedPhotos.map((_, index) => (
+
+                  <button
+                    key={index}
+                    type="button"
+                    className={
+                      currentPhotoIndex === index
+                        ? "active"
+                        : ""
+                    }
+                    onClick={() => setCurrentPhotoIndex(index)}
+                    aria-label={`Go to photo ${index + 1}`}
+                  />
+
+                ))}
+
+              </div>
+
+            )}
+
           </div>
 
-          {images.length > 1 && (
+          {/* NEXT BUTTON */}
+
+          {selectedPhotos.length > 1 && (
+
             <button
               type="button"
               className="gallery-lightbox-next"
               onClick={showNext}
-              aria-label="Next image"
+              aria-label={
+                isHindi ? "अगली तस्वीर" : "Next photo"
+              }
             >
               <ChevronRight size={30} />
             </button>
+
           )}
+
         </div>
+
       )}
+
     </div>
   );
 }
